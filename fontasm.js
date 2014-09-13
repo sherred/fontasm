@@ -1,0 +1,15 @@
+var el = prompt('selector');
+var element = document.querySelectorAll(el);
+var parent = element[0].parentElement;
+var ff = window.getComputedStyle( element[0], null ).getPropertyValue( 'font-family' );
+var parts = ff.split(',');
+parts.shift();
+var newff = parts.join(',');
+var fontasm = document.createElement('div');
+fontasm.style.cssText = window.getComputedStyle(element[0]).cssText;
+fontasm.style.fontFamily = newff;
+fontasm.innerHTML = element[0].innerHTML;
+fontasm.style.top = element[0].offsetTop+'px';
+fontasm.style.left = element[0].offsetLeft+'px';
+fontasm.style.position = 'absolute';
+parent.appendChild(fontasm);
